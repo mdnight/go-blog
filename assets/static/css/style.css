@@ -39,20 +39,6 @@ body {
     color: #111111
 }
 
-.ul li {
-    margin-top: 0;
-    display:
-}
-
-.ul li a {
-    padding: 20px;
-    text-decoration: none;
-    font-weight: bold;
-    color: #FFFFFF;
-    background-color: #000000;
-    float: left
-}
-
 .subt, #subtitle, .footnote {
     font-color: #373737;
     text-align: center;
@@ -61,34 +47,25 @@ body {
 
 #maindiv, #aboutdiv{
     font-size: 22px;
-    margin-left: 20%;
-    margin-right: 20%;
+    margin-left: 18%;
+    margin-right: 18%;
     text-indent: 50px;
     text-align: justify;
     color: #373737;
 }
 
-.articles-list ul {
+#maindiv ul {
     list-style-type: none;
     font-size: 20px;
     color: #373737;
 }
 
-.articles-list li {
+#maindiv li {
     font-size: 30px;
     color: #c0b283;
 }
 
-.article-header {
-    font-size: 38px;
-    text-align: center;
-    color: #c0b283;
-    font-weight: bold;
-}
-
-.article-content {
-    font-size: 22px;
-    text-align: justify;
-    text-indent: 50px;
-    color: #373737;
+#date {
+    font-size:16px;
+    color:#c0b283;
 }

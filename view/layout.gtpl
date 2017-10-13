@@ -30,7 +30,9 @@
     <div class="subt">
       <h2><span id="subtitle"></span></h2>
     </div>
-    <div id="maindiv"></div>
+    <div id="maindiv">
+      <ul id="previews-list"></ul>
+    </div>
     <div id="aboutdiv"></div>
     <div class="footnote">
       <h3 id="copyright"></h3>
