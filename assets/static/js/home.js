@@ -3,6 +3,7 @@ var aboutjson = {};
 var previews = [];
 
 $(function(){
+    var path = window.location.pathname
     $.getJSON("/json/common/common.json", function(result){
         $.each(result, function(key, val) {
             commonjson[key] = val;
@@ -17,44 +18,38 @@ $(function(){
         });
 
 
-    $.getJSON("/json/about/about.json", function(result) {
-        $.each(result, function(key, val) {
-            aboutjson[key] = val;
-        });
-    })
-        .done(function(){
-            $("#aboutdiv").append(aboutjson["text"]).hide();
-        });
-    $.getJSON("/json/postspreview/1", function(result){
-        $.each(result["posts"], function(i, item){
-            var tmp = {};
-            $.each(item, function(key, val) {
-                tmp[key] = val;
+    if (path === "/") {
+        $.getJSON("/json/postspreview/1", function(result){
+            $.each(result["posts"], function(i, item){
+                var tmp = {};
+                $.each(item, function(key, val) {
+                    tmp[key] = val;
+                });
+                previews.push(tmp);
             });
-            previews.push(tmp);
-        });
-    })
+        })
         .done(function(){
             $.each(previews, function(i, item){
                 genPreview(item);
             });
+            $("#subtitle").empty().append(commonjson["subtitle"]);
+            $("#maindiv").show();
+            $("#aboutdiv").hide();
         });
-});
-
-$(document).ready(function(){
-    $("#about").click(function(){
-        $("#subtitle").empty().append(aboutjson["subtitle"]);
-        $("#aboutdiv").show();
-        $("#maindiv").hide();
-    });
-});
-
-$(document).ready(function(){
-    $("#home").click(function(){
-        $("#subtitle").empty().append(commonjson["subtitle"]);
-        $("#maindiv").show();
-        $("#aboutdiv").hide();
-    });
+    }
+    else if (path === "/about/") {
+        $.getJSON("/json/about/about.json", function(result) {
+            $.each(result, function(key, val) {
+                aboutjson[key] = val;
+            });
+        })
+        .done(function(){
+            $("#maindiv").hide();
+            $("#aboutdiv").append(aboutjson["text"]);            
+            $("#subtitle").empty().append(aboutjson["subtitle"]);
+            $("#aboutdiv").show();
+        });
+    }
 });
 
 function genPreview(item) {

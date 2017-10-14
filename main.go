@@ -10,7 +10,9 @@ import (
 	"strings"
 )
 
-var ()
+var (
+	base, _ = ioutil.ReadFile(filepath.Join("view", "base.html"))
+)
 
 func init() {
 }
@@ -27,8 +29,7 @@ func index(w http.ResponseWriter, r *http.Request) {
 		errorHandler(w, r, http.StatusNotFound)
 		return
 	}
-	body, _ := ioutil.ReadFile(filepath.Join("view", "layout.gtpl"))
-	w.Write(body)
+	w.Write(base)
 }
 
 func about(w http.ResponseWriter, r *http.Request) {
@@ -36,8 +37,7 @@ func about(w http.ResponseWriter, r *http.Request) {
 		errorHandler(w, r, http.StatusNotFound)
 		return
 	}
-	w.Header().Set("Content-Type", "application/json")
-
+	w.Write(base)
 }
 
 func archive(w http.ResponseWriter, r *http.Request) {
