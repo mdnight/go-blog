@@ -69,3 +69,8 @@ body {
     font-size:16px;
     color:#c0b283;
 }
+
+#pagenum {
+    font-size: 20px;
+    text-align: center;
+}

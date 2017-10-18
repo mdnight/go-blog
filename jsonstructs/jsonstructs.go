@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 	"path/filepath"
+	"strconv"
 	"strings"
 )
 
@@ -17,7 +18,9 @@ type Post struct {
 
 //HomeJSON stores homepage posts previews
 type HomeJSON struct {
-	Posts []Post `json:"posts"`
+	Posts       []Post `json:"posts"`
+	CurrentPage string `json:"currentpage"`
+	PagesAmount string `json:"pagesamount"`
 }
 
 func loadFile(filename string) ([]byte, error) {
@@ -44,6 +47,7 @@ func (l *HomeJSON) Marshal(page int) ([]byte, error) {
 		}
 		return tmp
 	}(len(postFiles))
+	l.PagesAmount = strconv.Itoa(pagesAmount)
 	if page >= pagesAmount {
 		page = pagesAmount
 		tmp := make([]Post, len(postFiles)%10)
@@ -68,6 +72,7 @@ func (l *HomeJSON) Marshal(page int) ([]byte, error) {
 		posts[key].Text = string(tmp)[:400] + "..."
 		posts[key].URL = filepath.Join("post", val.Name())
 	}
+	l.CurrentPage = strconv.Itoa(page)
 	l.Posts = posts
 	return json.Marshal(l)
 }

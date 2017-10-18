@@ -25,7 +25,8 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 }
 
 func index(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" && r.URL.Path != "/blog/" {
+	dir, _ := filepath.Split(r.URL.Path)
+	if dir != "/" && dir != "/blog/" {
 		errorHandler(w, r, http.StatusNotFound)
 		return
 	}
