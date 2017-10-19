@@ -11,6 +11,7 @@ $(function(){
         });
     })
         .done(function(){
+            $("#photo").attr("src", commonjson["img"]);
             $("#name").empty().append(commonjson["name"]);
             $("#prof").empty().append(commonjson["prof"]);
             $("#subtitle").append(commonjson["subtitle"]);

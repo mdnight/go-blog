@@ -107,6 +107,18 @@ func json(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func img(w http.ResponseWriter, r *http.Request) {
+	dir, file := filepath.Split(r.URL.Path)
+	if dir == "/img/" && file != "" {
+		if body, err := ioutil.ReadFile(filepath.Join("storage", "imgs", file)); err == nil {
+			w.Write(body)
+			return
+		}
+	}
+	errorHandler(w, r, http.StatusNotFound)
+	return
+}
+
 func main() {
 
 	fs := http.FileServer(http.Dir("assets/"))
@@ -116,6 +128,7 @@ func main() {
 	http.HandleFunc("/about/", about)
 	http.HandleFunc("/archive/", archive)
 	http.HandleFunc("/json/", json)
+	http.HandleFunc("/img/", img)
 
 	if err := http.ListenAndServe(":9090", nil); err != nil {
 		panic(err)
