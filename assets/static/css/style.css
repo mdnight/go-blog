@@ -1,21 +1,23 @@
 .page-header {
-    margin; 0;
+    margin: 0;
     position: relative;
     width: 100%;
     text-align: center;
-    background-color: #dcd0c0;
+    background-color: #D2BFA8;
 }
 
 #photo {
+    position: relative;
+    margin-top: 10px;
     border-radius: 15%;
 }
 
 body {
-    background-color: #f4f4f4;
+    background-color: #F9E8D5;
 }
 
 .nav {
-    background-color: #373737;
+    background-color: #2E3D35;
 }
 
 .nav-tabs > li {
@@ -39,11 +41,11 @@ body {
 
 .nav-tabs > li > a:hover,
 .nav-tabs > li > a:focus {
-    color: #111111
+    color: #787963
 }
 
 .subt, #subtitle, .footnote {
-    font-color: #373737;
+    font-color: #2E3D35;
     text-align: center;
     font-size: 35px;
 }
@@ -54,23 +56,23 @@ body {
     margin-right: 18%;
     text-indent: 50px;
     text-align: justify;
-    color: #373737;
+    color: #2E3D35;
 }
 
 #maindiv ul {
     list-style-type: none;
     font-size: 20px;
-    color: #373737;
+    color: #2E3D35;
 }
 
 #maindiv li {
     font-size: 30px;
-    color: #c0b283;
+    color: #787963;
 }
 
 #date {
     font-size:16px;
-    color:#c0b283;
+    color:#787963;
 }
 
 #pagenum {
