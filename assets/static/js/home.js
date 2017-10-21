@@ -32,17 +32,18 @@ $(function(){
                 previews.push(tmp);
             });
         })
-        .done(function(){
-            $.each(previews, function(i, item){
-                genPreview(item);
+            .done(function(){
+                $(document).attr("title", commonjson["maintitle"]);
+                document.title = commonjson["maintitle"];
+                $.each(previews, function(i, item){
+                    genPreview(item);
+                });
+                $("#subtitle").empty().append(commonjson["subtitle"]);
+                $("#maindiv").show();
+                $("#aboutdiv").hide();
+                $("#pagenum").show();
+                setPagenumDiv(pagesInfo["pagesAmount"]);
             });
-            $("#subtitle").empty().append(commonjson["subtitle"]);
-            $("#maindiv").show();
-            $("#aboutdiv").hide();
-            $("#pagenum").show();
-            console.log(pagesInfo["currentPage"], pagesInfo["pagesAmount"]);
-            setPagenumDiv(pagesInfo["pagesAmount"]);
-        });
     }
     else if (path === "/about/") {
         $.getJSON("/json/about/about.json", function(result) {
@@ -50,13 +51,14 @@ $(function(){
                 aboutjson[key] = val;
             });
         })
-        .done(function(){
-            $("#maindiv").hide();
-            $("#aboutdiv").append(aboutjson["text"]);
-            $("#subtitle").empty().append(aboutjson["subtitle"]);
-            $("#aboutdiv").show();
-            $("#pagenum").hide();
-        });
+            .done(function(){
+                $(document).attr("title", "About – " + commonjson["maintitle"]);
+                $("#maindiv").hide();
+                $("#aboutdiv").append(aboutjson["text"]);
+                $("#subtitle").empty().append(aboutjson["subtitle"]);
+                $("#aboutdiv").show();
+                $("#pagenum").hide();
+            });
     }
     else if (path.split('/')[1] === 'blog' && path.split('/')[2] !== '') {
         $.getJSON("/json/postspreview/" + path.split('/')[2], function(result){
