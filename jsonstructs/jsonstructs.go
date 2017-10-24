@@ -96,6 +96,6 @@ func (l *Post) Marshal(name string) ([]byte, error) {
 			}
 		}
 		return "Jan 1 2017"
-	}(filepath.Dir("storage"), name)
+	}(filepath.Dir("storage/posts/"), name)
 	return json.Marshal(l)
 }
