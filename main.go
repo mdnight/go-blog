@@ -11,7 +11,8 @@ import (
 )
 
 var (
-	base, _ = ioutil.ReadFile(filepath.Join("view", "base.html"))
+	base, _     = ioutil.ReadFile(filepath.Join("view", "base.html"))
+	posthtml, _ = ioutil.ReadFile(filepath.Join("view", "post.html"))
 )
 
 func init() {
@@ -46,6 +47,15 @@ func archive(w http.ResponseWriter, r *http.Request) {
 		errorHandler(w, r, http.StatusNotFound)
 		return
 	}
+}
+
+func post(w http.ResponseWriter, r *http.Request) {
+	dir, file := filepath.Split(r.URL.Path)
+	if dir != "/post/" && file == "" {
+		errorHandler(w, r, http.StatusNotFound)
+		return
+	}
+	w.Write(posthtml)
 }
 
 func json(w http.ResponseWriter, r *http.Request) {
@@ -127,6 +137,7 @@ func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/about/", about)
 	http.HandleFunc("/archive/", archive)
+	http.HandleFunc("/post/", post)
 	http.HandleFunc("/json/", json)
 	http.HandleFunc("/img/", img)
 

@@ -88,7 +88,7 @@ $(function(){
 
 
 function genPreview(item) {
-    var html = "<a href='" + item["url"] + "'><li>" + item["name"]
+    var html = "<a href='" + item["url"].replace(/.txt$/, '') + "'><li>" + item["name"]
         + "</li></a><p id=date>" + item['date'] + "</p>" + item["text"] + "<hr>";
     $("#previews-list").append(html);
 }
